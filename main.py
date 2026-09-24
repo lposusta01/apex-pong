@@ -7,6 +7,16 @@ First Last - Month Year
 import asyncio
 import pygame
 
+def check_wall_collision(l: tuple, br: tuple) -> list[float]:
+    xy: list[float] = [1.0, 1.0]
+    
+    if l[0] >= br[0] or l[0] <= 0:
+        xy[0] = -1.0
+    if l[1] >= br[1] or l[1] <= 0:
+        xy[1] = -1.0
+    
+    return xy
+
 async def main():
     # Game constants and variables
     WINDOW_TITLE: str = "Pong Starter"
@@ -41,8 +51,17 @@ async def main():
 
         # update the ball
         # check for top wall boundary
-        if ball_location[1] - BALL_RADIUS <= 0:
-            ball_speed[1] *= -1
+        # if ball_location[1] - BALL_RADIUS / 2 <= 0:
+        #     ball_speed[1] *= -1
+
+        # Check for the right wall boundary
+        # if ball_location[0] - BALL_RADIUS / 2 >= SCREEN_DIMENSIONS[0]:
+        #     ball_speed[0] *= -1
+
+        new_speed = check_wall_collision(ball_location, SCREEN_DIMENSIONS)
+        if new_speed != [1.0, 1.0]:
+            ball_speed[0] *= new_speed[0]
+            ball_speed[1] *= new_speed[1]
 
         ball_location[0] += ball_speed[0]
         ball_location[1] += ball_speed[1]
