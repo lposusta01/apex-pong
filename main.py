@@ -24,19 +24,19 @@ async def main():
     FPS: int = 60
 
     BALL_RADIUS: int = 10
-    BALL_COLOR: tuple = (255, 255, 255)
-    ball_speed: list[float] = [1, -2]
+    BALL_COLOR: tuple = (255, 150, 180)
+    ball_speed: list[float] = [2.5, -4.5]
     ball_location: list[int] = [SCREEN_DIMENSIONS[0] // 2, SCREEN_DIMENSIONS[1] // 2]
 
     LEFT_PADDLE_DIMENSIONS: tuple = (15, 100)
     LEFT_PADDLE_OFFSET: int = 30 # distance from left edge of screen
-    LEFT_PADDLE_COLOR: tuple = (150, 150, 175)
+    LEFT_PADDLE_COLOR: tuple = (255, 180, 150)
     left_paddle: pygame.Rect = pygame.Rect(LEFT_PADDLE_OFFSET,
                                         SCREEN_DIMENSIONS[1] // 2 - LEFT_PADDLE_DIMENSIONS[1] // 2,
                                         LEFT_PADDLE_DIMENSIONS[0], LEFT_PADDLE_DIMENSIONS[1])
 
 
-    BG_COLOR: tuple = (20, 20, 50)
+    BG_COLOR: tuple = (120, 150, 225)
     
 
     pygame.init()
