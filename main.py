@@ -35,6 +35,7 @@ async def main():
                                         SCREEN_DIMENSIONS[1] // 2 - LEFT_PADDLE_DIMENSIONS[1] // 2,
                                         LEFT_PADDLE_DIMENSIONS[0], LEFT_PADDLE_DIMENSIONS[1])
 
+    PADDLE_SPEED = 5
 
     BG_COLOR: tuple = (20, 20, 50)
     
@@ -48,6 +49,18 @@ async def main():
     # MAIN GAME LOOP
     running: bool = True
     while running:
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w]:
+            if left_paddle.top > 0:
+                left_paddle.top -= PADDLE_SPEED
+        if keys[pygame.K_s]:
+            if left_paddle.bottom < SCREEN_DIMENSIONS[1]:
+                left_paddle.top += PADDLE_SPEED
+        if keys[pygame.K_UP]:
+            print("UP")
+        if keys[pygame.K_DOWN]:
+            print("DOWN")
 
         # update the ball
         # check for top wall boundary
@@ -76,6 +89,8 @@ async def main():
         await asyncio.sleep(0) # necessary for pygbag
 
         clock.tick(FPS)
+
+        pygame.event.pump()
 
     pygame.quit()
 
